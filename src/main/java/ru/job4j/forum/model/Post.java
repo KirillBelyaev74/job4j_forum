@@ -1,13 +1,26 @@
 package ru.job4j.forum.model;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
+@Entity
+@Table(name = "posts")
 public class Post {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "description")
     private String description;
+
+    @Temporal(value = TemporalType.TIMESTAMP)
+    @Column(name = "created")
     private Date created;
 
     public Post() {
@@ -71,7 +84,7 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post { "
+        return "PostMemory { "
                 + "id = " + id
                 + ", name = '" + name + '\''
                 + ", description = '" + description + '\''

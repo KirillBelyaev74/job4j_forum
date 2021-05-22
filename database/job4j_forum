@@ -1,0 +1,15 @@
+create database job4j_forum;
+
+create table posts
+(
+    id          serial primary key,
+    name        varchar(50) not null,
+    description text,
+    created     timestamp without time zone not null default now()
+);
+
+create table users(
+    id serial primary key,
+    name varchar(50) not null,
+    password varchar(20) not null
+);

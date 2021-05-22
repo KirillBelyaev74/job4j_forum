@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.job4j.forum.model.User;
-import ru.job4j.forum.service.UserService;
+import ru.job4j.forum.service.memory.UserMemory;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,11 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/job4j_forum")
 public class Login {
 
-    private final UserService userService;
+    private final UserMemory userMemory;
 
     @Autowired
-    public Login(UserService userService) {
-        this.userService = userService;
+    public Login(UserMemory userMemory) {
+        this.userMemory = userMemory;
     }
 
     @GetMapping("/login")
@@ -30,7 +30,7 @@ public class Login {
 
     @PostMapping("/login")
     public String login(@ModelAttribute User user, Model model, HttpServletRequest request) {
-        User result = userService.findByName(user.getName());
+        User result = userMemory.findByName(user.getName());
         if (result == null || !result.equals(user)) {
             model.addAttribute("message", "Имя или пароль введены некорректно!");
             return "login";
