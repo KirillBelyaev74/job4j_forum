@@ -10,7 +10,7 @@ import ru.job4j.forum.service.repository.PostRepository;
 import java.util.Date;
 
 @Controller
-@RequestMapping("/job4j_forum")
+@RequestMapping
 public class Crud {
 
     private final PostRepository postRepository;
@@ -29,7 +29,7 @@ public class Crud {
     public String save(@ModelAttribute Post post) {
         post.setCreated(new Date());
         postRepository.save(post);
-        return "redirect:/job4j_forum/";
+        return "/";
     }
 
     @GetMapping("/edit")
@@ -43,7 +43,7 @@ public class Crud {
     public String edit(@ModelAttribute Post post) {
         post.setCreated(new Date());
         postRepository.save(post);
-        return "redirect:/job4j_forum/";
+        return "/";
     }
 
     @GetMapping("/delete")
@@ -51,6 +51,6 @@ public class Crud {
         Post post = new Post();
         post.setId(id);
         postRepository.delete(post);
-        return "redirect:/job4j_forum/";
+        return "/";
     }
 }

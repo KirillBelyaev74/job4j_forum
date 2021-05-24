@@ -22,14 +22,14 @@
                                 ${message}
                         </div>
                     </c:if>
-                    <form action="<c:url value='/job4j_forum/registration'/>" method='POST'>
+                    <form action="<c:url value='/registration'/>" method='POST'>
                         <div class="form-group">
-                            <label for="name" class="cols-sm-2 control-label">Имя</label>
+                            <label class="cols-sm-2 control-label">Имя</label>
                             <div class="cols-sm-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user fa"
                                                                        aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="name" id="name"
+                                    <input type="text" class="form-control" name="username"
                                            placeholder="Введите имя"/>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                             <button type="submit" class="btn btn-warning">
                                 Зарегистироваться
                             </button>
-                            <input type="button" onclick="location.href='<c:url value='/job4j_forum/login'/>'"
+                            <input type="button" onclick="location.href='<c:url value='/login'/>'"
                                    class="btn btn-warning" value="Авторизация">
                         </div>
                     </form>

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/job4j_forum")
+@RequestMapping
 public class Index {
 
     private final PostRepository postRepository;

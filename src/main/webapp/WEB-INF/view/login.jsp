@@ -22,24 +22,24 @@
                                 ${message}
                         </div>
                     </c:if>
-                    <form action="<c:url value='/job4j_forum/login'/>" method='POST'>
+                    <form action="<c:url value='/login'/>" method='POST'>
                         <div class="form-group">
-                            <label for="name" class="cols-sm-2 control-label">Имя</label>
+                            <label class="cols-sm-2 control-label">Имя</label>
                             <div class="cols-sm-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user fa"
                                                                        aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="name" id="name"
+                                    <input type="text" class="form-control" name="username"
                                            placeholder="Введите имя"/>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="password" class="cols-sm-2 control-label">Пароль</label>
+                            <label class="cols-sm-2 control-label">Пароль</label>
                             <div class="cols-sm-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                    <input type="password" class="form-control" name="password" id="password"
+                                    <input type="password" class="form-control" name="userpassword"
                                            placeholder="Введите пароль"/>
                                 </div>
                             </div>
@@ -48,8 +48,9 @@
                             <button type="submit" class="btn btn-warning">
                                 Войти
                             </button>
-                            <input type="button" onclick="location.href='<c:url value='/job4j_forum/registration'/>'"
+                            <input type="button" onclick="location.href='<c:url value='/registration'/>'"
                                    class="btn btn-warning" value="Регистрация">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         </div>
                     </form>
                 </div>

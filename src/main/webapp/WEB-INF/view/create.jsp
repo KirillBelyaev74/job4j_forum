@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="container">
-    <form action="<c:url value='/job4j_forum/create'/>" method='POST'>
+    <form action="<c:url value='/create'/>" method='POST'>
         <div class="form-group"><br>
             <label for="name">Название темы</label>
             <input type="text" class="form-control" id="name" name="name" value="${post.name}">

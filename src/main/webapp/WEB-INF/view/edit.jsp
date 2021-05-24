@@ -19,7 +19,7 @@
 <body>
 <c:set var="result" value="${post}"/>
 <div class="container">
-    <form action="<c:url value='/job4j_forum/edit?id=${result.id}'/>" method='POST'>
+    <form action="<c:url value='/edit?id=${result.id}'/>" method='POST'>
         <div class="form-group"><br>
             <label for="name">Название темы</label>
             <input type="text" class="form-control" id="name" name="name" value="${result.name}">

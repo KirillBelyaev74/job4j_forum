@@ -28,14 +28,14 @@
         </a>
         <c:if test="${empty user}">
             <input type="button"
-                   onclick="location.href='<c:url value='/job4j_forum/login'/>'"
+                   onclick="location.href='<c:url value='/login'/>'"
                    class="btn btn-warning" value="Войти">
         </c:if>
     </div>
 </div>
 <div class="container mt-3">
     <c:if test="${not empty user}">
-        <br/><input type="button" onclick="location.href='<c:url value='/job4j_forum/create'/>'"
+        <br/><input type="button" onclick="location.href='<c:url value='/create'/>'"
                     class="btn btn-warning" value="Добавить"><br/><br/>
     </c:if>
     <table class="table">
@@ -53,10 +53,10 @@
                 <tr>
                     <td><c:out value="${post.name}"/></td>
                     <td><fmt:formatDate value="${post.created}" pattern="dd.MM.yy"/></td>
-                    <td><input type="button" onclick="location.href='<c:url value='/job4j_forum/edit?id=${post.id}'/>'"
+                    <td><input type="button" onclick="location.href='<c:url value='/edit?id=${post.id}'/>'"
                                class="btn btn-warning" value="Редактировать"></td>
                     <td><input type="button"
-                               onclick="location.href='<c:url value='/job4j_forum/delete?id=${post.id}'/>'"
+                               onclick="location.href='<c:url value='/delete?id=${post.id}'/>'"
                                class="btn btn-warning" value="Удалить"></td>
                 </tr>
             </c:forEach>

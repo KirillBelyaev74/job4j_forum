@@ -1,42 +1,40 @@
 package ru.job4j.forum.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import ru.job4j.forum.model.User;
-import ru.job4j.forum.service.memory.UserMemory;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping("/job4j_forum")
+@RequestMapping
 public class Login {
 
-    private final UserMemory userMemory;
-
-    @Autowired
-    public Login(UserMemory userMemory) {
-        this.userMemory = userMemory;
-    }
-
     @GetMapping("/login")
-    public String getLogin() {
+    public String loginPage(@RequestParam(value = "error", required = false) String error,
+                            @RequestParam(value = "logout", required = false) String logout,
+                            Model model) {
+        String errorMessage = null;
+        if (error != null) {
+            errorMessage = "Username or Password is incorrect !!";
+        }
+        if (logout != null) {
+            errorMessage = "You have been successfully logged out !!";
+        }
+        model.addAttribute("message", errorMessage);
         return "login";
     }
 
-    @PostMapping("/login")
-    public String login(@ModelAttribute User user, Model model, HttpServletRequest request) {
-        User result = userMemory.findByName(user.getName());
-        if (result == null || !result.equals(user)) {
-            model.addAttribute("message", "Имя или пароль введены некорректно!");
-            return "login";
-        } else {
-            request.getSession().setAttribute("user", user);
-            return "index";
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
         }
+        return "redirect:/login?logout=true";
     }
 }
