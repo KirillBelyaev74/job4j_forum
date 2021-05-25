@@ -29,12 +29,12 @@ public class Crud {
     public String save(@ModelAttribute Post post) {
         post.setCreated(new Date());
         postRepository.save(post);
-        return "/";
+        return "redirect:/";
     }
 
     @GetMapping("/edit")
     public String getEdit(@RequestParam int id, Model model) {
-        Post post = postRepository.findById(id).get();
+        Post post = postRepository.findById(id).orElse(null);
         model.addAttribute("post", post);
         return "edit";
     }
@@ -43,7 +43,7 @@ public class Crud {
     public String edit(@ModelAttribute Post post) {
         post.setCreated(new Date());
         postRepository.save(post);
-        return "/";
+        return "redirect:/";
     }
 
     @GetMapping("/delete")
@@ -51,6 +51,6 @@ public class Crud {
         Post post = new Post();
         post.setId(id);
         postRepository.delete(post);
-        return "/";
+        return "redirect:/";
     }
 }

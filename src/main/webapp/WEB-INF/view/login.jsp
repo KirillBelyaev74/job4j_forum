@@ -35,11 +35,11 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="cols-sm-2 control-label">Пароль</label>
+                            <label for="password" class="cols-sm-2 control-label">Пароль</label>
                             <div class="cols-sm-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                    <input type="password" class="form-control" name="userpassword"
+                                    <input type="password" class="form-control" name="password" id="password"
                                            placeholder="Введите пароль"/>
                                 </div>
                             </div>
@@ -48,9 +48,10 @@
                             <button type="submit" class="btn btn-warning">
                                 Войти
                             </button>
+                        </div>
+                        <div class="form-group ">
                             <input type="button" onclick="location.href='<c:url value='/registration'/>'"
                                    class="btn btn-warning" value="Регистрация">
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         </div>
                     </form>
                 </div>

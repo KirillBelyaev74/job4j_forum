@@ -34,6 +34,6 @@ public class Registration {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setAuthority(authorityRepository.findByAuthority("ROLE_USER"));
         userRepository.save(user);
-        return "redirect:/login";
+        return "login";
     }
 }

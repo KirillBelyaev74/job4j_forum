@@ -1,8 +1,5 @@
 package ru.job4j.forum.service.memory;
 
-import org.springframework.stereotype.Service;
-import ru.job4j.forum.model.Post;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;

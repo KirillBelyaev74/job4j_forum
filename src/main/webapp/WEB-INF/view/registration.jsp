@@ -48,6 +48,8 @@
                             <button type="submit" class="btn btn-warning">
                                 Зарегистироваться
                             </button>
+                        </div>
+                        <div class="form-group ">
                             <input type="button" onclick="location.href='<c:url value='/login'/>'"
                                    class="btn btn-warning" value="Авторизация">
                         </div>

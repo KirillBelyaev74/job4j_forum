@@ -13,8 +13,7 @@ import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(classes = Main.class)
 @AutoConfigureMockMvc
@@ -42,8 +41,7 @@ public class CrudTest {
                         .param("name", "one")
                         .param("description", "one"))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(view().name("/"));
+                .andExpect(status().is3xxRedirection());
     }
 
     @Test
@@ -65,8 +63,7 @@ public class CrudTest {
                         .param("name", "two")
                         .param("description", "two"))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(view().name("/"));
+                .andExpect(status().is3xxRedirection());
     }
 
     @Test
@@ -75,7 +72,6 @@ public class CrudTest {
                 get("/delete")
                         .param("id", "1"))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(view().name("/"));
+                .andExpect(status().is3xxRedirection());
     }
 }

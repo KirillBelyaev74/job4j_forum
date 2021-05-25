@@ -24,9 +24,11 @@
 <div class="navbar navbar-dark bg-dark box-shadow">
     <div class="container d-flex justify-content-between">
         <a class="navbar-brand d-flex align-items-center">
-            <strong>${user.name}</strong>
+            <c:if test="${not empty userName}">
+                <strong>Добро пожаловать, ${userName}</strong>
+            </c:if>
         </a>
-        <c:if test="${empty user}">
+        <c:if test="${empty userName}">
             <input type="button"
                    onclick="location.href='<c:url value='/login'/>'"
                    class="btn btn-warning" value="Войти">
@@ -34,7 +36,7 @@
     </div>
 </div>
 <div class="container mt-3">
-    <c:if test="${not empty user}">
+    <c:if test="${not empty userName}">
         <br/><input type="button" onclick="location.href='<c:url value='/create'/>'"
                     class="btn btn-warning" value="Добавить"><br/><br/>
     </c:if>
