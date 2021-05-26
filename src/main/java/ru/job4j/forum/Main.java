@@ -17,7 +17,6 @@ public class Main extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(Main.class);
     }
-
     @Bean
     public SpringLiquibase liquibase(@Qualifier("dataSource") DataSource ds) {
         SpringLiquibase liquibase = new SpringLiquibase();
@@ -25,7 +24,6 @@ public class Main extends SpringBootServletInitializer {
         liquibase.setDataSource(ds);
         return liquibase;
     }
-
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
