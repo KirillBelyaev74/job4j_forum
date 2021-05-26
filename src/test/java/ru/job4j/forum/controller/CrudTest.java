@@ -17,13 +17,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(classes = Main.class)
 @AutoConfigureMockMvc
-@WithMockUser
 public class CrudTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
+    @WithMockUser
     public void whenGetViewCreate() throws Exception {
         this.mockMvc.perform(
                 get("/create"))
@@ -33,6 +33,7 @@ public class CrudTest {
     }
 
     @Test
+    @WithMockUser
     public void whenSavePost() throws Exception {
         Post post = mock(Post.class);
         mockMvc.perform(
@@ -45,6 +46,7 @@ public class CrudTest {
     }
 
     @Test
+    @WithMockUser
     public void whenGetViewEdit() throws Exception {
         mockMvc.perform(
                 get("/edit")
@@ -55,6 +57,7 @@ public class CrudTest {
     }
 
     @Test
+    @WithMockUser
     public void whenEditPost() throws Exception {
         Post post = mock(Post.class);
         mockMvc.perform(
@@ -67,6 +70,7 @@ public class CrudTest {
     }
 
     @Test
+    @WithMockUser
     public void whenDeleteById() throws Exception {
         mockMvc.perform(
                 get("/delete")

@@ -14,19 +14,6 @@ import javax.sql.DataSource;
 @SpringBootApplication
 public class Main extends SpringBootServletInitializer {
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(Main.class);
-    }
-
-    @Bean
-    public SpringLiquibase liquibase(DataSource ds) {
-        SpringLiquibase liquibase = new SpringLiquibase();
-        liquibase.setChangeLog("classpath:liquibase-changeLog.xml");
-        liquibase.setDataSource(ds);
-        return liquibase;
-    }
-
     @Bean
     public DataSource ds(@Value("${spring.datasource.driver-class-name}") String driver,
                          @Value("${spring.datasource.url}") String url,
@@ -38,6 +25,19 @@ public class Main extends SpringBootServletInitializer {
         ds.setUsername(username);
         ds.setPassword(password);
         return ds;
+    }
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Main.class);
+    }
+
+    @Bean
+    public SpringLiquibase liquibase(DataSource ds) {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setChangeLog("classpath:liquibase-changeLog.xml");
+        liquibase.setDataSource(ds);
+        return liquibase;
     }
 
     public static void main(String[] args) {

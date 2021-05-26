@@ -3,21 +3,24 @@ package ru.job4j.forum.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import ru.job4j.forum.model.User;
-import ru.job4j.forum.service.repository.AuthorityRepository;
-import ru.job4j.forum.service.repository.UserRepository;
+import ru.job4j.forum.service.AuthorityService;
+import ru.job4j.forum.service.UserService;
 
 @Controller
 @RequestMapping
 public class Registration {
 
-    private final UserRepository userRepository;
-    private final AuthorityRepository authorityRepository;
+    private final UserService userRepository;
+    private final AuthorityService authorityRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public Registration(UserRepository userRepository, AuthorityRepository authorityRepository, PasswordEncoder passwordEncoder) {
+    public Registration(UserService userRepository, AuthorityService authorityRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.authorityRepository = authorityRepository;
         this.passwordEncoder = passwordEncoder;

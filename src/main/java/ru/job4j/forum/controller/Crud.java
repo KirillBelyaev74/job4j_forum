@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.forum.model.Post;
-import ru.job4j.forum.service.repository.PostRepository;
+import ru.job4j.forum.service.PostService;
 
 import java.util.Date;
 
@@ -13,10 +13,10 @@ import java.util.Date;
 @RequestMapping
 public class Crud {
 
-    private final PostRepository postRepository;
+    private final PostService postRepository;
 
     @Autowired
-    public Crud(PostRepository postRepository) {
+    public Crud(PostService postRepository) {
         this.postRepository = postRepository;
     }
 
@@ -34,7 +34,7 @@ public class Crud {
 
     @GetMapping("/edit")
     public String getEdit(@RequestParam int id, Model model) {
-        Post post = postRepository.findById(id).orElse(null);
+        Post post = postRepository.findById(id);
         model.addAttribute("post", post);
         return "edit";
     }
@@ -48,9 +48,7 @@ public class Crud {
 
     @GetMapping("/delete")
     public String delete(@RequestParam int id) {
-        Post post = new Post();
-        post.setId(id);
-        postRepository.delete(post);
+        postRepository.deleteById(id);
         return "redirect:/";
     }
 }
