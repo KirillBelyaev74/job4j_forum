@@ -33,6 +33,11 @@
                    onclick="location.href='<c:url value='/login'/>'"
                    class="btn btn-warning" value="Войти">
         </c:if>
+        <c:if test="${not empty userName}">
+            <input type="button"
+                   onclick="location.href='<c:url value='/logout'/>'"
+                   class="btn btn-warning" value="Выйти">
+        </c:if>
     </div>
 </div>
 <div class="container mt-3">
@@ -56,8 +61,8 @@
                     <td><c:out value="${post.name}"/></td>
                     <td><fmt:formatDate value="${post.created}" pattern="dd.MM.yy"/></td>
                     <td><input type="button" onclick="location.href='<c:url value='/edit?id=${post.id}'/>'"
-                               class="btn btn-warning" value="Редактировать"></td>
-                    <td><input type="button"
+                               class="btn btn-warning" value="Редактировать">
+                        <input type="button"
                                onclick="location.href='<c:url value='/delete?id=${post.id}'/>'"
                                class="btn btn-warning" value="Удалить"></td>
                 </tr>

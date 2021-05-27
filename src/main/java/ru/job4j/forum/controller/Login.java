@@ -20,10 +20,10 @@ public class Login {
                             Model model) {
         String errorMessage = null;
         if (error != null) {
-            errorMessage = "Username or Password is incorrect !!";
+            errorMessage = "Неверно введен логин или пароль!";
         }
         if (logout != null) {
-            errorMessage = "You have been successfully logged out !!";
+            errorMessage = "Вы успешно вышли";
         }
         model.addAttribute("message", errorMessage);
         return "login";
