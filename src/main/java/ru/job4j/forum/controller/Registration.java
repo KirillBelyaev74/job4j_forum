@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.job4j.forum.model.User;
 import ru.job4j.forum.service.AuthorityService;
 import ru.job4j.forum.service.UserService;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping
@@ -33,12 +36,11 @@ public class Registration {
     }
 
     @PostMapping("/registration")
-    public String save(@ModelAttribute User user, Model model) {
+    public String save(@ModelAttribute @Valid User user, BindingResult bindingResult, Model model) {
         String url;
         String message;
-        if (user.getUsername().equals("") || user.getPassword().equals("")) {
-            message = "Введите все данные пожалуйста!";
-            url = "registration";
+        if (bindingResult.hasErrors()) {
+            return "registration";
         } else if (userRepository.isHave(user.getUsername())) {
             message = "Пользователь с таким именем уже существует!";
             url = "registration";

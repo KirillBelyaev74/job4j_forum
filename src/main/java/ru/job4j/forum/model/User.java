@@ -1,5 +1,8 @@
 package ru.job4j.forum.model;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @Entity
@@ -11,9 +14,12 @@ public class User {
     @Column(name = "id")
     private int id;
 
+    @NotBlank(message = "Для регистрации необходимо ввести имя")
     @Column(name = "username")
     private String username;
 
+    @Min(5)
+    @NotBlank(message = "Для регистрации необходимо ввести пароль")
     @Column(name = "password")
     private String password;
 

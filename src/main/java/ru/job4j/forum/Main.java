@@ -6,7 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.ResourceBundleMessageSource;
 
 import javax.sql.DataSource;
 
@@ -17,6 +19,7 @@ public class Main extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(Main.class);
     }
+
     @Bean
     public SpringLiquibase liquibase(@Qualifier("dataSource") DataSource ds) {
         SpringLiquibase liquibase = new SpringLiquibase();
@@ -24,6 +27,7 @@ public class Main extends SpringBootServletInitializer {
         liquibase.setDataSource(ds);
         return liquibase;
     }
+
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
